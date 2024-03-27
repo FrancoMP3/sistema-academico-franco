@@ -12,11 +12,19 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      nombre: {
+      fk_seccion: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "seccion", 
+          key: "id" 
+        }
+      },
+      titulo: {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      biografia: {
+      url: {
         allowNull: false,
         type: DataTypes.TEXT,
       },

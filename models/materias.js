@@ -16,10 +16,27 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      biografia: {
+      semestre: {
         allowNull: false,
         type: DataTypes.TEXT,
       },
+      fk_profesor: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "profesores", 
+          key: "id" 
+        }
+      },
+      fk_carrera: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "carrera", 
+          key: "id" 
+        }
+      },
+      
     },
     {
       timestamps: false,
@@ -28,14 +45,15 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   profesor.getProfesores = async (params) => {
-    
-    const query = ``;
+    const query = `SELECT * FROM profesores`; // Consulta para recuperar todos os professores
     return await sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
     });
   };
 
   profesor.associate = function (models) {
+    // Aqui você pode definir associações com outros modelos, se necessário
+    // Por exemplo:
     // profesor.hasMany(models.materias, {
     //   foreignKey: "fk_materia",
     //   as: "materias",
@@ -44,4 +62,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return profesor;
 };
-

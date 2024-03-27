@@ -16,9 +16,25 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      biografia: {
+      apellido: {
         allowNull: false,
         type: DataTypes.TEXT,
+      },
+      correo: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+      password: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+      fk_estudiante: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "estudiante", 
+          key: "id"
+        }
       },
     },
     {
@@ -28,14 +44,15 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   profesor.getProfesores = async (params) => {
-    
-    const query = ``;
+    const query = ``; // Agrega tu consulta aquí
     return await sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
     });
   };
 
   profesor.associate = function (models) {
+    // Define las asociaciones con otros modelos, si es necesario
+    // Por ejemplo:
     // profesor.hasMany(models.materias, {
     //   foreignKey: "fk_materia",
     //   as: "materias",
@@ -44,4 +61,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return profesor;
 };
-
